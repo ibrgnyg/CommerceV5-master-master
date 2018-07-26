@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+@{
+    ViewData["Title"] = "Kullanıcılar";
+}
+<p>
+    <a asp-action="Register" asp-controller="Account" asp-area="Identity" class=" btn bnt-sm btn-primary">Yeni Kullanıcı</a>
+</p>
+
+<table class=" table" id=" rblRecords">
+       <thead>
+       <tr>
+           <th>Kullanıcı adı</th>
+           <th>E Posta doğrulandımı?</th>
+           <th>Eylemler</th>
+       </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@(item.EmailConfirmed ? "Evet":"Hayır")</td>
+            <td><a asp-action=" Delete" asp-route-id="@item.Id" class=" btn bnt-sm btn-danger">Sil</a></td>
+        </tr>
+
+    }
+
+    </tbody>
+</table>
