@@ -13,8 +13,10 @@ namespace CommerceV3.Models
         [Display(Name = "Foto")]
         public  string Photo {get;set;}
         [Display(Name = "Ürün Adı")]
+		[StringLength(100)]
 		public string Name { get; set; }
         [Display(Name = "Bağlantı")]
+		[StringLength(100)]
 		public string Slug { get; set; }
 		[Display(Name = "Açıklama")]
 		public string Description { get; set; }
@@ -36,20 +38,21 @@ namespace CommerceV3.Models
 		public decimal ShippingPriceInCountryWide { get; set; }
 		[Display(Name = "Kargo Ücreti(Dünya)")]
 		public decimal ShippingPriceInWorldWide { get; set; }
-
-        [Display(Name = "Tedarikçi")]
+		[Display(Name = "Tedarikçi")]
         public string SupplierId { get; set; }
         [Display(Name = "Tedarikçi")]
-        [ForeignKey("SupplierId")]
-		public Supplier Supplier{ get; set; }
-
-        [Display(Name = "Marka")]
+		[ForeignKey("SupplierId")]
+		public Supplier Supplier { get; set; }
+		[Display(Name = "Marka")]
         public string BrandId { get; set; }
         [Display(Name = "Marka")]
         [ForeignKey("BrandId")]
 		public Brand Brand { get; set; }
-
-		public virtual ICollection<ProductCategory> ProductCategories { get; set; }
+		[Display(Name = "Kategori")]
+		public string CategoryId { get; set; }
+		[ForeignKey("Kategori")]
+		[Display(Name = "Kategori")]
+		public Category Category { get; set; }
 
 		[Display(Name = "Oluşturan Kullanıcı")]
 		public string CreatedBy { get; set; }

@@ -11,7 +11,6 @@ namespace CommerceV3.Models
 		public string Id { get; set; }
 		[Display(Name = "Kategori Adı")]
 		public string Name { get; set; }
-		public virtual ICollection<ProductCategory> ProductCategories { get; set; }
-
+		public virtual ICollection<Product> Products { get; set; }
 	}
 }

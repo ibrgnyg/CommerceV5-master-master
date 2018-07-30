@@ -65,7 +65,9 @@ namespace CommerceV3.Areas.Admin.Controllers
 
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name");
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name");
-            return View(product);
+
+			
+			return View(product);
         }
 
         // POST: Admin/Products/Create
@@ -106,7 +108,8 @@ namespace CommerceV3.Areas.Admin.Controllers
             }
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", product.BrandId);
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name", product.SupplierId);
-            return View(product);
+			ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId); ;
+			return View(product);
         }
 
         // GET: Admin/Products/Edit/5
@@ -124,7 +127,7 @@ namespace CommerceV3.Areas.Admin.Controllers
             }
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", product.BrandId);
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name", product.SupplierId);
-            return View(product);
+			return View(product);
         }
 
         // POST: Admin/Products/Edit/5
@@ -132,7 +135,7 @@ namespace CommerceV3.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Slug,Description,OldPrice,Price,Quantity,IsInStock,IsPublished,IsNew,ShippingPriceInCityWide,ShippingPriceInCountryWide,ShippingPriceInWorldWide,SupplierId,BrandId,CreatedBy,CreateDate,UpdatedBy,UpdateDate,Photo")] Product product, IFormFile upload)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Slug,Description,OldPrice,Price,Quantity,IsInStock,IsPublished,IsNew,ShippingPriceInCityWide,ShippingPriceInCountryWide,ShippingPriceInWorldWide,SupplierId,BrandId,CreatedBy,CreateDate,UpdatedBy,UpdateDate,Photo,CategoryId")] Product product, IFormFile upload)
         {
             if (id != product.Id)
             {
@@ -182,7 +185,8 @@ namespace CommerceV3.Areas.Admin.Controllers
             }
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", product.BrandId);
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name", product.SupplierId);
-            return View(product);
+			ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+			return View(product);
         }
 
         // GET: Admin/Products/Delete/5

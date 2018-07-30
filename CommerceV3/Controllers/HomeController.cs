@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CommerceV3.Models;
 using CommerceV3.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommerceV3.Controllers
 {
@@ -20,11 +21,18 @@ namespace CommerceV3.Controllers
         public IActionResult Index()
         {
             ViewBag.Slides = db.Slides.Where(s => s.IsPublished == true).OrderBy(o => o.Position).Take(10).ToList();
+			ViewBag.Products = db.Products.Include(i=>i.Category).Where(p => p.IsPublished == true).OrderByDescending(o => o.CreateDate).Take(8).ToList();
 
+			//(form p in db.Products where p.IaPublished == true orderby (o=>o.Position).Take(10).Tolist();
             return View();
         }
 
-        public IActionResult Contact()
+		private object Where(Func<object, bool> p)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
