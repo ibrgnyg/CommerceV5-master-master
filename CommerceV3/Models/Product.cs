@@ -50,7 +50,7 @@ namespace CommerceV3.Models
 		public Brand Brand { get; set; }
 		[Display(Name = "Kategori")]
 		public string CategoryId { get; set; }
-		[ForeignKey("Kategori")]
+		[ForeignKey("CategoryId")]
 		[Display(Name = "Kategori")]
 		public Category Category { get; set; }
 
